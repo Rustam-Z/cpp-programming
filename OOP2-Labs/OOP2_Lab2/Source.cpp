@@ -4,7 +4,7 @@
 using namespace std;
 
 // Program #1
- class Person {
+class Person {
 private:
 	string name;
 	int age;
