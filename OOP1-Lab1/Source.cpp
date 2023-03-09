@@ -17,7 +17,7 @@ int main(){
 		cout << "Circumference of Circle is " << Circumference << ";" << endl;
 	 }
 	else {
-		cout << "Negetive numbers cannot be applied !!!"<<endl;
+		cout << "Negative numbers cannot be applied !!!"<<endl;
 	 }
 	system("pause");
 	return 0;
