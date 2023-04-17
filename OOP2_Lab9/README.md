@@ -8,6 +8,6 @@
     Ahmed	9876
     ...     ...
     ```
-The names contain only one word and the names and telephone numbers are separated by white spaces. Write a program to read the file and output the list in the two columns.
+    The names contain only one word and the names and telephone numbers are separated by white spaces. Write a program to read the file and output the list in the two columns.
 
 3. Enter 20 numbers in a file named “Numbers.txt”. Ask user to enter any number and search if it exists in the file or not.
