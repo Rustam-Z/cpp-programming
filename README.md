@@ -1,25 +1,30 @@
 # C++ Programming
 
-```
-Tips for Learning Programming
-1. Learn and code every day, consistency is important.
-2. Write it out — plan your code before you move to the computer. Take small notes.
-3. Learn debugging your code — see line by line how your code works. Try it on Visual Studio.
-4. Surround yourself with others who are learning. Teach to each other.
-5. Learn asking GOOD questions.
-   - G: Give context on what you are trying to do, clearly describing the problem.
-   - O: Outline the things you have already tried to fix the issue.
-   - O: Offer your best guess as to what the problem might be. This helps the person who is helping you to not only know what you are thinking, but also know that you have done some thinking on your own.
-   - D: Demo what is happening. Include the code, a traceback error message, and an explanation of the steps you executed that resulted in the error. This way, the person helping does not have to try to recreate the issue.
-6. Build something, anything. For example, simple calculator, or program to save and read data from TXT files.
-7. Focus on 1 thing! Take small steps, but every day, consistency is very important.
-```
 
-## Contents:
+## Contents
+- [Tips](#keep-these-tips-in-mind-while-learning-programming)
 - [Computer Science Basics](#computer-science-basics)
 - [Learning Resources](#learning-resources)
 - [Problem Solving](#problem-solving)
 - [Projects Ideas](#projects-ideas)
+
+
+## Keep These Tips in Mind While Learning Programming
+```
+1. Learn and code every day, consistency is important.
+2. Write it down - plan your code before you start coding and understand the input to your program and the output from your code.
+3. Learn to debug your code - look at the code line by line to see how it works.
+4. Surround yourself with other people who are learning. Teach each other.
+5. Learn taking notes.
+6. Build something, anything. For example, simple calculator, or program to save and read data from TXT files.
+7. Focus on 1 thing! Take small steps, but every day, consistency is very important again.
+8. Learn to ask GOOD questions to others:
+  - G: Give context on what you are trying to do, clearly describing the problem.
+  - O: Outline the things you have already tried to fix the issue.
+  - O: Offer your best guess as to what the problem might be. It helps the person who is helping you not only know what you're thinking, but also know that you've thought of something yourself.
+  - D: Demonstrate what's going on. Include the code, the tracing error message, and an explanation of the steps you followed that resulted in the error. That way, the person helping doesn't have to try to recreate the problem.
+```
+
 
 ## Computer Science Basics
 - [Harvard CS50](https://youtube.com/playlist?list=PLhQjrBD2T383f9scHRNYJkior2VvYjpSL) - Scratch, C, Arrays, Algorithms, Memory, Data structures, Python, SQL, HTML, CSS, JavaScript, Flask
@@ -116,6 +121,7 @@ Tips for Learning Programming
 ```
 
 ## Projects Ideas
+```
 1. Banking system with all banking facilities like – deposit, withdrawal, foreign exchange to any currency, availability of loans for purchasing vehicles, apartments, houses, setting up business, education loan, management of ATMs and all other features.
 2. Airline flight reservation system (online booking of tickets in different flights for different destinations all over the world, cancellation of tickets, clear display of cancellation amount, refund of amount after cancellation, showing  availability of all flights, showing flights timings for all 7 days of a week, seats availability, seat selection for travelers by giving the complete layout of the seating arrangement inside the flights, food availability/non-availability inside the flights, change of travel dates and amount charged.)
 3. Taxi/cab sharing
@@ -162,3 +168,4 @@ Tips for Learning Programming
 44. Cryptocurrency trading portal (exchange) allowing trading of all crypto coins using security, confidentiality and authentication
 45. Parking management system
 46. Online food delivery system (linked to all restaurants in different districts in different regions in some country)
+```

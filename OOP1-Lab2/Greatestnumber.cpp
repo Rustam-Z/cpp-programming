@@ -1,10 +1,11 @@
-//U1910049
-//Lab assignment #3
-//Program to find greatest in 3 numbers
+// U1910049
+// Lab assignment #3
+// Program to find greatest in 3 numbers
 
 #include <iostream>
 using namespace std;
-int main2() {
+int main2()
+{
 	float a, b, c;
 	cout << "Enter the 3 numbres: ";
 	cin >> a >> b >> c;
@@ -14,8 +15,8 @@ int main2() {
 		cout << "The greatest number is " << b << ";" << endl;
 	if (c >= a && c >= b)
 		cout << "The greatest number is " << c << ";" << endl;
-	else if(a==b==c)
-		cout << "All numbers are equal."<< endl;
+	else if (a == b == c)
+		cout << "All numbers are equal." << endl;
 	system("pause");
 	return 0;
 }

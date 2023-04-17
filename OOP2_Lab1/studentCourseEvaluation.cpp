@@ -4,10 +4,11 @@
 using namespace std;
 
 // creating a class named "Student"
-class Student {
+class Student
+{
 private:
 	string student_id;
-	string  student_name;
+	string student_name;
 	double OOP2_Score;
 	double math_Score;
 	double english_Score;
@@ -19,7 +20,8 @@ private:
 	}
 
 public:
-	void TakeData() {
+	void TakeData()
+	{
 		cout << "ID : ";
 		cin >> student_id;
 		cout << "Name: ";
@@ -32,15 +34,16 @@ public:
 		cin >> english_Score;
 		ctotal();
 	}
-		void showData() {
-			
-			cout << "ID: "<< student_id << endl;
-			cout << "Name: " << student_name << endl;
-			cout << "OOP2: " << OOP2_Score << endl;
-			cout << "Math: " << math_Score << endl;
-			cout << "English: " << english_Score << endl;
-			cout << "Total score: " << total_Score << endl;
-		}
+	void showData()
+	{
+
+		cout << "ID: " << student_id << endl;
+		cout << "Name: " << student_name << endl;
+		cout << "OOP2: " << OOP2_Score << endl;
+		cout << "Math: " << math_Score << endl;
+		cout << "English: " << english_Score << endl;
+		cout << "Total score: " << total_Score << endl;
+	}
 };
 
 // creating a class named "Employee"
@@ -53,31 +56,40 @@ private:
 	int Rate;
 
 public:
-	void setEmployee_ID(string x) {
+	void setEmployee_ID(string x)
+	{
 		Employee_ID = x;
 	}
-	string getEmployee_ID() {
+	string getEmployee_ID()
+	{
 		return Employee_ID;
 	}
-	void setEmployee_Name(string y) {
+	void setEmployee_Name(string y)
+	{
 		Employee_Name = y;
 	}
-	string getEmployee_Name() {
+	string getEmployee_Name()
+	{
 		return Employee_Name;
 	}
-	void setHours(int z) {
+	void setHours(int z)
+	{
 		Hours = z;
 	}
-	int getHours() {
+	int getHours()
+	{
 		return Hours;
 	}
-	void setRate(int i) {
+	void setRate(int i)
+	{
 		Rate = i;
 	}
-	int getRate() {
+	int getRate()
+	{
 		return Rate;
 	}
-	double total_salary() {
+	double total_salary()
+	{
 		int total;
 		total = Hours * Rate;
 		return total;
@@ -93,18 +105,21 @@ int main()
 	cin >> choice;
 	cout << endl;
 
-	Student student; // creating an object of a class "Student"
+	Student student;   // creating an object of a class "Student"
 	Employee employee; // creating an object of a class "Employee"
 	switch (choice)
 	{
-	case 1: {
+	case 1:
+	{
 		student.TakeData();
 		cout << endl;
 		student.showData();
 	}
-		  break;
-	case 2: {
-		while (true) {
+	break;
+	case 2:
+	{
+		while (true)
+		{
 			system("cls");
 			int choice_employee;
 
@@ -114,7 +129,8 @@ int main()
 			cin >> choice_employee;
 			switch (choice_employee)
 			{
-			case 1: {
+			case 1:
+			{
 				string x, y;
 				int z, i;
 				system("cls");
@@ -133,31 +149,32 @@ int main()
 				employee.setHours(z);
 				employee.setRate(i);
 				system("pause");
-
 			}
-				  break;
-			case 2: {
+			break;
+			case 2:
+			{
 				system("cls");
-				cout <<"ID: "<< employee.getEmployee_ID() << endl;
-				cout <<"Name: "<< employee.getEmployee_Name() << endl;
-				cout <<"Hours: "<< employee.getHours() << endl;
-				cout <<"Rate: "<< employee.getRate() << endl;
+				cout << "ID: " << employee.getEmployee_ID() << endl;
+				cout << "Name: " << employee.getEmployee_Name() << endl;
+				cout << "Hours: " << employee.getHours() << endl;
+				cout << "Rate: " << employee.getRate() << endl;
 				system("pause");
 			}
-				  break;
-			case 3: {
+			break;
+			case 3:
+			{
 				system("cls");
-				cout << "Total salary: " << employee.total_salary() <<endl;
+				cout << "Total salary: " << employee.total_salary() << endl;
 				system("pause");
 			}
-				 break;
+			break;
 			default:
 				cout << "Incorrect input! Try again!" << endl;
 				break;
 			}
 		}
 	}
-	 break;
+	break;
 	default:
 		cout << "Incorrect input! Try again!" << endl;
 		break;

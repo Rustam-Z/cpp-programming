@@ -1,26 +1,33 @@
-//Program to find that entered year is leap or not.
+// Program to find that entered year is leap or not.
+
 #include <iostream>
 using namespace std;
-int main4() {
+
+int main4()
+{
 	int year;
-	cout << "Enter a Year: " ;
+	cout << "Enter a Year: ";
 	cin >> year;
 	if (year % 4 == 0)
 	{
 		if (year % 100 == 0)
 		{
-			if (year % 400 == 0) {
-				cout << "Given " << year << " year is a leap."<< endl ;
+			if (year % 400 == 0)
+			{
+				cout << "Given " << year << " year is a leap." << endl;
 			}
-			else {
+			else
+			{
 				cout << "Given " << year << " year isn't a leap." << endl;
 			}
 		}
-		else {
+		else
+		{
 			cout << "Given " << year << " year is a leap year." << endl;
 		}
 	}
-	else {
+	else
+	{
 		cout << "Given " << year << " year isn't a leap." << endl;
 	}
 	system("pause");
