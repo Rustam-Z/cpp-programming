@@ -2,7 +2,7 @@
 #include <iostream>
 #include <ctime>   // Time
 #include <windows.h> // Loading
-
+using namespace std;
 void gotoXY(int x, int y) {
 	//'COORD' is a built in function for positioning the objects
 	COORD d;
