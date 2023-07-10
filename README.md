@@ -39,11 +39,11 @@
 - RU [C++ by Denis Markov](https://www.youtube.com/playlist?list=PLbmlzoDQrXVFC13GjpPrJxl6mzTiX65gs)
 - RU [C++ Уроки - Гоша Дударь](https://www.youtube.com/watch?v=qSHP98i9mDU&list=PL0lO_mIqDDFXNfqIL9PHQM7Wg_kOtDZsW)
 - To read:
-  - [cplusplus.com](https://cplusplus.com/doc/tutorial/)
-  - [w3schools.com](https://www.w3schools.com/cpp/default.asp) 
+  - [w3schools.com](https://www.w3schools.com/cpp/default.asp)
+  - [javatpoint.com](https://www.javatpoint.com/cpp-tutorial)
   - [tutorialspoint.com](https://www.tutorialspoint.com/cplusplus/index.htm)
-  - [GeegsForGeeks.org](https://www.geeksforgeeks.org/c-plus-plus/):
-
+  - [cplusplus.com](https://cplusplus.com/doc/tutorial/)
+  - [learncpp.com](https://www.learncpp.com/)
 ## Problem Solving
 ```
 1. C++ Program to print "Hello, World!"
