@@ -21,7 +21,7 @@
 8. Learn to ask GOOD questions to others:
   - G: Give context on what you are trying to do, clearly describing the problem.
   - O: Outline the things you have already tried to fix the issue.
-  - O: Offer your best guess as to what the problem might be. It helps the person who is helping you not only know what you're thinking, but also know that you've thought of something yourself.
+  - O: Offer your best guess as to what the problem might be. It helps the person who is helping you not only know what you're thinking but also know that you've thought of something yourself.
   - D: Demonstrate what's going on. Include the code, the tracing error message, and an explanation of the steps you followed that resulted in the error. That way, the person helping doesn't have to try to recreate the problem.
 ```
 
@@ -46,7 +46,7 @@
   - [learncpp.com](https://www.learncpp.com/)
     
 ## Problem Solving
-1. 1. C++ Program to print "Hello, World!".
+1. C++ Program to print "Hello, World!".
 2. C++ Program to print an integer entered by the user.
 3. C++ Program to Add/Subtract/Multiply/Divide Two Integers.
 4. C++ Program to Add/Subtract/Multiply/Divide Two Integers entered by the user.
@@ -216,7 +216,7 @@
     + Total_Score: double
     ---
     + ctotal(): Function to calculate eng + math + OOP-2 with double return type.
-    + Takedata(): Function to accept values for student id, Student Name, eng, OOP-2, maths and invoke ctotal() to calculate total.
+    + Takedata(): Function to accept values for student ID, Student Name, eng, OOP-2, maths and invoke ctotal() to calculate total.
     + Showdata(): Function to display all the data members on the screen.
     ```
 87. [OOP] The class Person with private attributes name(string) and age(int).
