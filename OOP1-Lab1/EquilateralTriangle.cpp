@@ -14,7 +14,7 @@ int main()
 	cin >> a;
 	if (a > 0)
 	{
-		Area = sqrt(2) * a * a * 0.25;
+		Area = sqrt(3) * a * a * 0.25;
 		cout << "The Area of this triangle is " << Area << ";" << endl;
 	}
 	else
