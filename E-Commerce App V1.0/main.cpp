@@ -19,7 +19,7 @@ using namespace std;
 //Owner price & storage quantity changers
 int price;
 int quantity;
-int Overall_Sum; // Calculating Overall sum "вей"
+int Overall_Sum; // Calculating Overall sum "О©╫О©╫О©╫"
 
 //Password and login for Owner
 string Owner_Login_Sign = "Rustam202";
@@ -207,7 +207,7 @@ void F_Sign_in() {
 				cout << "\t\t\t     Please press any key back to 'Sign in' Menu.\n\n" << endl;
 				system("pause");
 				F_Sign_in();
-			} // else ends
+			} // else ends 
 		}break;
 
 		case 48: {   // Back
@@ -1375,4 +1375,6 @@ void F_Cart_Check() {
 
 	}// loop end
 	//system("pause");
+	cout<<"Hello,world!";
 } // function ends
+
