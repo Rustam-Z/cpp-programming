@@ -8,7 +8,6 @@
 - [Problem Solving](#problem-solving)
 - [Projects Ideas](#projects-ideas)
 
-
 ## Keep These Tips in Mind While Learning Programming
 ```
 1. Learn and code every day, consistency is important.
@@ -16,7 +15,7 @@
 3. Learn to debug your code - look at the code line by line to see how it works.
 4. Surround yourself with other people who are learning. Teach each other.
 5. Learn taking notes.
-6. Build something, anything. For example, simple calculator, or program to save and read data from TXT files.
+6. Build something, anything you would enjoy while coding. Be unique.
 7. Focus on 1 thing! Take small steps, but every day, consistency is very important again.
 8. Learn to ask GOOD questions to others:
   - G: Give context on what you are trying to do, clearly describing the problem.
@@ -25,17 +24,18 @@
   - D: Demonstrate what's going on. Include the code, the tracing error message, and an explanation of the steps you followed that resulted in the error. That way, the person helping doesn't have to try to recreate the problem.
 ```
 
-
 ## Computer Science Basics
 - [Harvard CS50](https://youtube.com/playlist?list=PLhQjrBD2T383f9scHRNYJkior2VvYjpSL) - Scratch, C, Arrays, Algorithms, Memory, Data structures, Python, SQL, HTML, CSS, JavaScript, Flask
-- `Optional` [Crash Course Computer Science](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo)
+- [Crash Course Computer Science](https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo)
 - [Computer Science for Everyone](https://www.youtube.com/playlist?list=PLrC-HcVNfULbGKkhJSgfqvqmaFAZvfHes) 
+- [Book "Everything You Need to Ace Computer Science ..."](https://www.amazon.com/Everything-Computer-Science-Coding-Notebook/dp/1523502770)
+
 
 ## Learning Resources
-- EN [C++ for beginners — CodeBeauty](https://www.youtube.com/playlist?list=PL43pGnjiVwgQHLPnuH9ch-LhZdwckM8Tq)
-- EN [C++ Programming Tutorial — thenewboston](https://www.youtube.com/playlist?list=PLAE85DE8440AA6B83)
-- EN [C++ by The Cherno](https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
-- EN [C++ by freeCodeCamp.org](https://www.youtube.com/watch?v=vLnPwxZdW4Y)
+- [C++ for beginners — CodeBeauty](https://www.youtube.com/playlist?list=PL43pGnjiVwgQHLPnuH9ch-LhZdwckM8Tq)
+- [C++ Programming Tutorial — thenewboston](https://www.youtube.com/playlist?list=PLAE85DE8440AA6B83)
+- [C++ by The Cherno](https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
+- [C++ by freeCodeCamp.org](https://www.youtube.com/watch?v=vLnPwxZdW4Y)
 - RU [C++ by Denis Markov](https://www.youtube.com/playlist?list=PLbmlzoDQrXVFC13GjpPrJxl6mzTiX65gs)
 - RU [C++ Уроки - Гоша Дударь](https://www.youtube.com/watch?v=qSHP98i9mDU&list=PL0lO_mIqDDFXNfqIL9PHQM7Wg_kOtDZsW)
 - To read:
@@ -78,6 +78,17 @@
 23. Nested condition
     - Get the `age` and `membership_status` as user input. `membership_status` can be only `Y` or `y`. So, if the age is bigger or equal to 18 and if the user is a member of our shop, we provide a 10% discount, else we charge fully. 
     - Write a simple chatbot program using nested conditions.
+24. Write a program to calculate taxes, with the following conditions:
+    - If the salary is less than $1500, then there are no taxes
+    - If the salary is from 1501 to 3000 $ (1501<= salary < 3000) then the tax should be 10%
+    - If the salary is from 3001 to 5000 $ (3001 <= salary < 5000) then the tax should be 20%
+    - If the salary is above $5000, then the tax should be 30%
+    
+    **Hint: Formula for finding tax (salary * percentage) / 100**
+    
+    You must output:
+    - Tax percentage
+    - Salary after taxes
 24. Switch
     - Program to use `switch` statement. Display Monday to Sunday.
     - Program to display arithmetic operator using switch case.
@@ -268,7 +279,7 @@
 ## Projects Ideas
 1. Banking system with all banking facilities like – deposit, withdrawal, foreign exchange to any currency, availability of loans for purchasing vehicles, apartments, houses, setting up business, education loan, management of ATMs, and all other features.
 2. Airline flight reservation system (online booking of tickets on different flights for different destinations all over the world, cancellation of tickets, clear display of cancellation amount, refund of the amount after cancellation, showing availability of all flights, showing flights timings for all 7 days of a week, seats availability, seat selection for travelers by giving the complete layout of the seating arrangement inside the flights, food availability/non-availability inside the flights, change of travel dates and the amount charged.)
-3. Taxi/cab sharing
+3. Taxi/cab sharing app
 4. University education portal (providing all information about undergraduate, postgraduate, and doctoral programs offered, facilities available, location & map, and fee structure in all the universities)
 5. Online exam management system (with total security of identifying the students during exam, monitoring the student's activities during the exam, selection of different questions for each student, development of a large question bank containing hundreds of questions in each subject considering all courses taught at the university)
 6. Library management system
@@ -312,4 +323,15 @@
 44. Cryptocurrency trading portal (exchange) allowing trading of all crypto coins using security, confidentiality, and authentication
 45. Parking management system
 46. Online food delivery system (linked to all restaurants in different districts in different regions in some countries)
+47. *Food ordering system | Get order → print cheque as PDF file → see order status on separate HTML page.
+48. *Weather app that recommends what to wear as a telegram bot.
+49. *QR code generator, as a CLI tool, as a telegram bot.
+50. *Remainder application (crontab tool) as a telegram bot, as a CLI application.
+51. *Build own URL shortener as a telegram bot, as a CLI application, web app.
+52. Math library with functions as a library.
+53. Lost and found as a web app.
+
+## More Project Ideas
+- https://codingchallenges.fyi/challenges/challenge-redis-cli
+- https://github.com/codecrafters-io/build-your-own-x
 
