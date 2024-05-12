@@ -1,5 +1,4 @@
-// Rustam Zokirov
-// C++ program to Calculate Area and Circumference of Circle
+// C++ program to Calculate Area and Circumference of Circle.
 
 #include <iostream>
 
@@ -11,17 +10,17 @@ int main()
 	float R, Area, Circumference;
 	cout << "Please enter the Radius of Circle: ";
 	cin >> R;
-	if (R > 0)
-	{
+
+	if (R > 0) {
 		Area = 3.14 * R * R;
 		Circumference = 2 * 3.14 * R;
 		cout << "Area of Circle is " << Area << ";" << endl;
 		cout << "Circumference of Circle is " << Circumference << ";" << endl;
 	}
-	else
-	{
+	else {
 		cout << "Negative numbers cannot be applied !!!" << endl;
 	}
+	
 	system("pause");
 	return 0;
 }

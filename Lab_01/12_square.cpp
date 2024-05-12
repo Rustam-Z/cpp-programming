@@ -1,5 +1,4 @@
-// U1910049 Rustam Zokirov
-// C++ program to Calculate Area of Square
+// C++ program to Calculate Area of Square.
 
 #include <iostream>
 #include <math.h>
@@ -12,15 +11,15 @@ int main()
 	float a, Area;
 	cout << "Please enter the value for the side of Square: ";
 	cin >> a;
-	if (a > 0)
-	{
+
+	if (a > 0) {
 		Area = a * a;
 		cout << "The area of Square is " << Area << ";" << endl;
 	}
-	else
-	{
+	else {
 		cout << "Negetive numbers cannot be applied !!!" << endl;
 	}
+
 	system("pause");
 	return 0;
 }
