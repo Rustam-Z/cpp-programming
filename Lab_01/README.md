@@ -12,3 +12,6 @@
 10. C++ Program to Calculate the Area of Right Angle Triangle.
 11. C++ Program to Calculate the Area and Perimeter of a Rectangle.
 12. C++ Program to Calculate the Area and Perimeter of a Square.
+13. C++ Program to Find ASCII Value of a Character.
+14. C++ Program to Find the Size of int, float, double, and char.
+15. C++ Program to Swap Two Numbers.

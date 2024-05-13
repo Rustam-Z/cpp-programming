@@ -3,11 +3,12 @@
 #include <iostream>
 using namespace std;
 
-int main4()
+int main()
 {
 	int year;
 	cout << "Enter a Year: ";
 	cin >> year;
+	
 	if (year % 4 == 0)
 	{
 		if (year % 100 == 0)

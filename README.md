@@ -58,16 +58,18 @@
 10. C++ Program to Calculate the Area of Right Angle Triangle.
 11. C++ Program to Calculate the Area and Perimeter of a Rectangle.
 12. C++ Program to Calculate the Area and Perimeter of a Square.
-13. C++ program that converts between Celsius and Fahrenheit temperatures based on user input. You can also add conversions for Kelvin.
-14. C++ Program to Find ASCII Value of a Character.
-15. C++ Program to Find the Size of int, float, double, and char.
-16. C++ Program to Check Whether a Number is Even or Odd.
-17. C++ Program to Check Whether a Number is Positive or Negative.
-18. C++ Program to Check Whether a Character is a Vowel or Consonant.
-19. C++ Program to find the Largest Number Among Three Numbers.
-20. C++ Program to find if the entered year is a leap year or not.
-21. C++ program that allows the user to perform basic arithmetic operations (addition, subtraction, multiplication, division) on two numbers. You can also add error handling for division by zero.
-22. BMI Calculator: Create a program that calculates a person's Body Mass Index (BMI) based on their weight and height input. Provide a classification of whether the person is underweight, normal weight, overweight, or obese. Use cin, cout.
+13. C++ Program to Find ASCII Value of a Character.
+14. C++ Program to Find the Size of int, float, double, and char.
+15. C++ Program to Swap Two Numbers.
+
+16. C++ program that converts between Celsius and Fahrenheit temperatures based on user input. You can also add conversions for Kelvin.
+17. C++ Program to Check Whether a Number is Even or Odd.
+18. C++ Program to Check Whether a Number is Positive or Negative.
+19. C++ Program to Check Whether a Character is a Vowel or Consonant.
+20. C++ Program to find the Largest Number Among Three Numbers.
+21. C++ Program to find if the entered year is a leap year or not.
+22. C++ program that allows the user to perform basic arithmetic operations (addition, subtraction, multiplication, division) on two numbers. You can also add error handling for division by zero.
+23. BMI Calculator: Create a program that calculates a person's Body Mass Index (BMI) based on their weight and height input. Provide a classification of whether the person is underweight, normal weight, overweight, or obese. Use cin, cout.
     Formula: bmi = weight / (height * height)
     
     | bmi < 18.5 | Underweight |
@@ -75,10 +77,10 @@
     | bmi < 24.9 | Normal Weight |
     | bmi < 29.9 | Overweight |
     | Otherwise | Obese |
-23. Nested condition
+24. Nested condition
     - Get the `age` and `membership_status` as user input. `membership_status` can be only `Y` or `y`. So, if the age is bigger or equal to 18 and if the user is a member of our shop, we provide a 10% discount, else we charge fully. 
     - Write a simple chatbot program using nested conditions.
-24. Write a program to calculate taxes, with the following conditions:
+25. Write a program to calculate taxes, with the following conditions:
     - If the salary is less than $1500, then there are no taxes
     - If the salary is from 1501 to 3000 $ (1501<= salary < 3000) then the tax should be 10%
     - If the salary is from 3001 to 5000 $ (3001 <= salary < 5000) then the tax should be 20%
@@ -89,12 +91,12 @@
     You must output:
     - Tax percentage
     - Salary after taxes
-24. Switch
+26. Switch:
     - Program to use `switch` statement. Display Monday to Sunday.
     - Program to display arithmetic operator using switch case.
-25. C++ Program to Swap Two Numbers.
-26. C++ Program to Find all Roots of a Quadratic equation.
-27. C++ Program to Check Whether a Character is an Alphabet or not.
+27. C++ Program to Find all Roots of a Quadratic equation.
+28. C++ Program to Check Whether a Character is an Alphabet or not.
+
 28. C++ Program to Calculate the Sum of Natural Numbers.
 29. Program to calculate the sum of numbers from m to n.
     - Hint: Input two numbers m and n. Find the sum of all numbers from m to n. For example m=3 and n=8 then sum will be 3 + 4 + 5 + 6 + 7 + 8 = 33.
@@ -166,30 +168,34 @@
 56. C++ Program to Convert Binary Number to Decimal and vice-versa.
 57. C++ Program to Convert Octal Number to Decimal and vice-versa.
 58. C++ Program to Convert Binary Numbers to Octal and vice-versa.
-59. C++ Program to Reverse a Sentence Using Recursion.
-50. C++ Program to calculate the power using recursion.
-51. Write a program to calculate the area of a circle using functions.
-52. Simple Calculator Program: ****Create a program that acts as a basic calculator, allowing users to perform addition, subtraction, multiplication, and division. Use functions for each operation.
+
+59. C++ Program to Reverse a Sentence using recursion function.
+50. C++ Program to calculate the power using recursion function.
+51. Build a program for calculating the area and perimeter of various geometric shapes (circle, rectangle, triangle, etc.) using separate functions for each shape. 
+52. Simple Calculator Program: Create a program that acts as a basic calculator, allowing users to perform addition, subtraction, multiplication, and division. Use functions for each operation. 
 53. Write a program to swap two values using functions.
 54. Write a program to convert time to minutes using functions. (input 3 variables namely hours, minutes, and seconds. Convert everything into minutes.)
-55. Write a program to sum the Fibonacci series up to n (input n). 1, 1, 2, 3, 5, 8, 13, … 
+55. Write a program to sum the Fibonacci series up to n (input n). 1, 1, 2, 3, 5, 8, 13, 
 56. Function Overloading and Default Arguments: Build a program for calculating the area and perimeter of various geometric shapes (circle, rectangle, triangle, etc.) using separate functions for each shape. Overload functions for shapes with different parameters.
 57. Employee Payroll: ****Design a program that calculates employee payroll, including basic salary, overtime pay, and deductions. Use functions to compute each component.
+57. Temperature in °C can be converted to °F using this formula: °F = (°C x 9/5) + 32. Write a function which converts °C to °F, convert_celsius_to-fahrenheit.
+57. Write a function called check-season, it takes a month parameter and returns the season: Autumn, Winter, Spring or Summer.
+58. Write a function called calculate_slope which return the slope of a linear equation.
 58. **Student Grade Tracker:** Create a program that allows teachers to enter student grades and calculate averages, find the highest and lowest scores, and display statistics.
 59. **Library Management System:** Create a simple library management system where you can store and manage a list of books using arrays. Ask the user to enter the book names. You should have the function display the book names. Create a `void` function. You should have the functionality to update the book name. To do this create another function. And pass index as argument. 
-60. C++ Program to merge two arrays.
-61. C++ Program to search the value in the array and return its index, if the value is not found print “Item not found”.
-62. ****Number Sorting:** Write a program that reads a list of numbers into an array and sorts them in ascending or descending order using a sorting algorithm.
+60. Write a function to merge two arrays.
+61. Write a function to search the value in the array and return its index, if the value is not found print “Item not found”.
+62. **Number Sorting:** Write a program that reads a list of numbers into an array and sorts them in ascending or descending order using a sorting algorithm.
 63. **Matrix Operations:** Write a program for basic matrix operations, such as addition, subtraction, multiplication, and transposition.
 64. In a small company, there are five salesmen. Each salesman is supposed to sell three products. Write a program using a 2D array to print **(Input from user)**. The total sales by each salesman and Total sales of each item.
 65. C++ Program to Calculate Standard Deviation.
-66. C++ Program to Multiply Two Matrices by Passing the Matrix to a Function.
+
 67. C++ Program to Access Elements of an Array Using Pointer.
 68. Write a program that declares an integer variable, assigns a value to it, and then uses a pointer to print the value.
 69. Swap the values of two integer variables using pointers.
 70. Write a program that finds the sum of elements in an integer array using a pointer.
 71. Create a dynamic integer array and prompt the user for the array size. Fill the array with user input values. 
-72. C++ Program Swap Numbers in Cyclic Order Using Call by Reference.
+
 62. C++ Program to Find Largest Number Using Dynamic Memory Allocation.
 63. C++ Program to Find the Frequency of Characters in a String.
 64. C++ Program to count the number of vowels, consonants, and so on.
@@ -207,7 +213,7 @@
 76. C++ Program to Write a Sentence to a File.
 77. C++ Program to Read a Line From a File and Display it.
 78. C++ Program to Display its own Source Code as Output.
-79. C++ Programming Code To Create Pyramid and Pattern.
+
 80. [OOP] Define a class called **`Car`** with attributes like **`model`**, and **`year`**. Create an object of the **`Car`** class and set its attributes. Then, print out the car's details.
 81. [OOP] Redo the same program above using `this->`
 82. [OOP] Temperature converter. Write a class called **`TemperatureConverter`** with methods to convert between Celsius and Fahrenheit. From Celsius Kelvin. to Create an object of this class, and use it to convert a temperature from one scale to another.
