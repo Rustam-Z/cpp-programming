@@ -57,35 +57,34 @@ public:
 	}
 };
 
-class Teacher : public Staff
+void getdata()
 {
-protected:
-	string subject;
-	int publications;
+    Staff::getdata_code();
+    Staff::getdata_name();
 
-public:
-	Teacher()
-	{
-		subject = "Unknown";
-		publications = 0;
-	}
-	void getdata()
-	{
-		Staff::getdata_code();
-		Staff::getdata_name();
-		cout << " Enter subject: ";
-		cin >> subject;
-		cout << " Enter number of publications: ";
-		cin >> publications;
-	}
-	void showdata()
-	{
-		Staff::showdata_code();
-		Staff::showdata_name();
-		cout << " Subject: " << subject << endl
-			 << " Publications: " << publications << endl;
-	}
-};
+    std::cout << " Enter subject: ";
+    std::string tmp_subj;
+    std::getline(std::cin >> std::ws, tmp_subj);
+    const size_t MAX_SUBJECT_LEN = 100;
+    if (tmp_subj.size() > MAX_SUBJECT_LEN) tmp_subj = tmp_subj.substr(0, MAX_SUBJECT_LEN);
+    subject = tmp_subj;
+
+    // Validate integer input for publications
+    while (true)
+    {
+        std::cout << " Enter number of publications: ";
+        std::string line;
+        std::getline(std::cin, line);
+        std::stringstream ss(line);
+        int val;
+        if (ss >> val && ss.eof() && val >= 0)
+        {
+            publications = val; // PRECOGS_FIX: validated numeric parse, rejects non-numeric or negative inputs
+            break;
+        }
+        std::cout << " Invalid number, please enter a non-negative integer.\n";
+    }
+}
 
 class Officer : public Staff
 {
@@ -253,81 +252,107 @@ public:
 	}
 };
 
-class Master : public Account, public Admin
+void update()
 {
-public:
-	void create()
-	{
-		getdetails();
-		getpay();
-		getexpr();
-	}
+    for (int i = 0; i < 1000; i++)
+    {
+        // Replace system("cls") with platform-independent console-clearing simulation
+        for (int _i = 0; _i < 50; ++_i) std::cout << "\n"; // PRECOGS_FIX: avoid system() call by printing newlines to simulate clear
 
-	void display()
-	{
-		showdetails();
-		showpay();
-		showexpr();
-	}
+        std::cout << "\t U P D A T E  D E T A I L S\n";
+        std::cout << "=========================================\n";
+        std::cout << " Choose detail you want to update\n";
+        std::cout << " 1. NAME\n";
+        std::cout << " 2. CODE\n";
+        std::cout << " 3. EXPERIENCE\n";
+        std::cout << " 4. PAY\n";
+        std::cout << " 0. Back\n";
+        std::cout << " Your choice: ";
 
-	void update()
-	{
-		for (int i = 0; i < 1000; i++)
-		{
-			system("cls");
-			cout << "\t U P D A T E  D E T A I L S\n";
-			cout << "=========================================\n";
-			cout << " Choose detail you want to update\n";
-			cout << " 1. NAME\n";
-			cout << " 2. CODE\n";
-			cout << " 3. EXPERIENCE\n";
-			cout << " 4. PAY\n";
-			cout << " 0. Back\n";
-			cout << " Your choice: ";
-
-			switch (_getch())
-			{
-			case 49:
-				cout << "\n\n Enter name: ";
-				cin >> name;
-				cout << " Successfully Updated!\n";
-				Sleep(0700);
-				Sleep(0700);
-				break;
-			case 50:
-				cout << "\n\n Enter code: ";
-				cin >> code;
-				cout << " Successfully Updated!\n";
-				Sleep(0700);
-				Sleep(0700);
-				break;
-			case 51:
-				cout << "\n\n Enter Expereince: ";
-				cin >> experience;
-				cout << " Successfully Updated!\n";
-				Sleep(0700);
-				Sleep(0700);
-				break;
-			case 52:
-				cout << "\n\n Enter pay: ";
-				cin >> pay;
-				cout << " Successfully Updated!\n";
-				Sleep(0700);
-				Sleep(0700);
-				break;
-			case 48:
-				i = 1000;
-				break;
-			default:
-				cout << endl
-					 << endl;
-				cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
-				Sleep(0700);
-				Sleep(0700);
-			} // switch
-		}
-	} // for loop
-};
+        switch (_getch())
+        {
+        case 49:
+        {
+            std::cout << "\n\n Enter name: ";
+            std::string tmp;
+            std::getline(std::cin >> std::ws, tmp);
+            const size_t MAX_NAME_LEN = 100;
+            if (tmp.size() > MAX_NAME_LEN) tmp = tmp.substr(0, MAX_NAME_LEN);
+            name = tmp;
+            std::cout << " Successfully Updated!\n";
+            Sleep(0700);
+            Sleep(0700);
+        }
+        break;
+        case 50:
+        {
+            std::cout << "\n\n Enter code: ";
+            std::string tmp;
+            std::getline(std::cin >> std::ws, tmp);
+            const size_t MAX_CODE_LEN = 50;
+            if (tmp.size() > MAX_CODE_LEN) tmp = tmp.substr(0, MAX_CODE_LEN);
+            code = tmp;
+            std::cout << " Successfully Updated!\n";
+            Sleep(0700);
+            Sleep(0700);
+        }
+        break;
+        case 51:
+        {
+            std::cout << "\n\n Enter Experience: ";
+            // validate integer
+            while (true)
+            {
+                std::string line;
+                std::getline(std::cin >> std::ws, line);
+                std::stringstream ss(line);
+                int val;
+                if (ss >> val && ss.eof() && val >= 0)
+                {
+                    experience = val; // PRECOGS_FIX: validated numeric input for experience
+                    break;
+                }
+                std::cout << " Invalid value. Enter a non-negative integer for experience: ";
+            }
+            std::cout << " Successfully Updated!\n";
+            Sleep(0700);
+            Sleep(0700);
+        }
+        break;
+        case 52:
+        {
+            std::cout << "\n\n Enter pay: ";
+            // validate float
+            while (true)
+            {
+                std::string line;
+                std::getline(std::cin >> std::ws, line);
+                std::stringstream ss(line);
+                float val;
+                if (ss >> val && ss.eof() && val >= 0.0f)
+                {
+                    pay = val; // PRECOGS_FIX: validated numeric input for pay
+                    break;
+                }
+                std::cout << " Invalid value. Enter a non-negative numeric pay amount: ";
+            }
+            std::cout << " Successfully Updated!\n";
+            Sleep(0700);
+            Sleep(0700);
+        }
+        break;
+        case 48:
+            i = 1000;
+            break;
+        default:
+            std::cout << std::endl
+                      << std::endl;
+            std::cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
+            Sleep(0700);
+            Sleep(0700);
+        } // switch
+    }
+}
 
 int main()
 {
@@ -386,9 +411,29 @@ void F_First_Program_Menu()
 	Regular_Typist regular;
 	Casual_Typist casual;
 
+	// Local helpers to avoid use of system() (use Win32 console APIs / direct input instead)
+	auto safeClear = []() {
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+		if (hConsole == INVALID_HANDLE_VALUE) return;
+		CONSOLE_SCREEN_BUFFER_INFO csbi;
+		DWORD count;
+		if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) return;
+		DWORD cellCount = csbi.dwSize.X * csbi.dwSize.Y;
+		COORD homeCoords = {0, 0};
+		FillConsoleOutputCharacterA(hConsole, ' ', cellCount, homeCoords, &count);
+		FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellCount, homeCoords, &count);
+		SetConsoleCursorPosition(hConsole, homeCoords);
+	};
+	auto safePause = []() {
+		std::cout << "\nPress any key to continue...";
+		// PRECOGS_FIX: replace system("pause") with direct keyboard read to avoid shell invocation
+		_getch();
+		std::cout << "\n";
+	};
+
 	for (int k = 0; k < 1000; k++)
 	{
-		system("cls");
+		safeClear(); // PRECOGS_FIX: replace system("cls") with safeClear() to avoid shell invocation
 		cout << "\tM A I N  M E N U\n";
 		cout << "      =====================\n";
 		cout << " 1. TEACHER\n";
@@ -400,7 +445,7 @@ void F_First_Program_Menu()
 		{
 		case '1':
 		{
-			system("cls");
+			safeClear();
 			cout << "\t T E A C H E R\n";
 			cout << "===================================\n";
 			teacher.getdata();
@@ -409,13 +454,13 @@ void F_First_Program_Menu()
 			teacher.showdata();
 			cout << endl
 				 << endl;
-			system("pause");
+			safePause();
 		}
 		break;
 
 		case '2':
 		{
-			system("cls");
+			safeClear();
 			cout << "\t O F F I C E R\n";
 			cout << "===================================\n";
 			officer.getdata();
@@ -424,7 +469,7 @@ void F_First_Program_Menu()
 			officer.showdata();
 			cout << endl
 				 << endl;
-			system("pause");
+			safePause();
 		}
 		break;
 
@@ -432,7 +477,7 @@ void F_First_Program_Menu()
 		{
 			for (int l = 0; l < 1000; l++)
 			{
-				system("cls");
+				safeClear();
 				cout << "\t T Y P I S T\n";
 				cout << "===================================\n";
 				cout << " 1. Regular typist\n";
@@ -443,7 +488,7 @@ void F_First_Program_Menu()
 				{
 				case '1':
 				{
-					system("cls");
+					safeClear();
 					cout << "\t R E G U L A R  T Y P I S T\n";
 					cout << "===================================\n";
 					regular.getdata();
@@ -452,13 +497,13 @@ void F_First_Program_Menu()
 					regular.showdata();
 					cout << endl
 						 << endl;
-					system("pause");
+					safePause();
 				}
 				break;
 
 				case '2':
 				{
-					system("cls");
+					safeClear();
 					cout << "\t C A S U A L  T Y P I S T\n";
 					cout << "===================================\n";
 					casual.getdata();
@@ -467,12 +512,12 @@ void F_First_Program_Menu()
 					casual.showdata();
 					cout << endl
 						 << endl;
-					system("pause");
+					safePause();
 				}
 				break;
 				case '0':
 				{
-					system("cls");
+					safeClear();
 					l = 1000;
 				}
 				break;
@@ -481,17 +526,17 @@ void F_First_Program_Menu()
 					cout << endl
 						 << endl;
 					cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
-					Sleep(0700);
-					Sleep(0700);
+					Sleep(700);
+					Sleep(700);
 				}
 				break;
 				} // switch
-			}	  // for
+			}      // for
 		}
 		break;
 		case '0':
 		{
-			system("cls");
+			safeClear();
 			k = 1000;
 		}
 		break;
@@ -500,12 +545,12 @@ void F_First_Program_Menu()
 			cout << endl
 				 << endl;
 			cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
-			Sleep(0700);
-			Sleep(0700);
+			Sleep(700);
+			Sleep(700);
 		}
 		break;
 		} // switch
-	}	  // for loop
+	}      // for loop
 }
 
 void F_Second_Program_Menu()

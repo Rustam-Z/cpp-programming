@@ -20,47 +20,65 @@ int main();
 
 // class ITEM base class for two clasees
 class Item { // class ITEM which includes the name and universal item code
-protected: 
-	string name;
-	string UIC;
+protected:
+    string name;
+    string UIC;
 public:
-	Item() { // default constructor
-		name = "Unknown";
-		UIC = "Unknown";
-	}
+    Item() { // default constructor
+        name = "Unknown";
+        UIC = "Unknown";
+    }
 
-	Item(string name, string UIC) { // parametirized constructor
-		this->name = name;
-		this->UIC = UIC;
-	}
+    Item(string name, string UIC) { // parametirized constructor
+        this->name = name;
+        this->UIC = UIC;
+    }
 
-	void set_name(string name) { // function for inputing the name of item
-		this->name = name;
-	}
+    // PRECOGS_FIX: add a virtual destructor to ensure derived destructors run when deleted via Item*
+    virtual ~Item() {}
 
-	void set_UIC(string UIC) {
-		this->UIC = UIC;
-	}
+    void set_name(string name) { // function for inputing the name of item
+        this->name = name;
+    }
 
-	string get_name() {
-		return name;
-	}
+    void set_UIC(string UIC) {
+        this->UIC = UIC;
+    }
 
-	string get_UIC() {
-		return UIC;
-	}
+    string get_name() {
+        return name;
+    }
 
-	void virtual display() {
-		cout << left << setw(20) << name << setw(15) << UIC;
-	}
+    string get_UIC() {
+        return UIC;
+    }
 
-	void virtual input() {
-		cout << "Enter the name of a new product: ";
-	    cin >> name;
-		cout << "Enter the UIC of a new product: ";
-		cin >> UIC;
-	}
+    void virtual display() {
+        cout << left << setw(20) << name << setw(15) << UIC;
+    }
 
+    void virtual input() {
+        // Use getline to accept spaces and perform simple validation to avoid malformed UIC/name
+        cout << "Enter the name of a new product: ";
+        {
+            string tmp;
+            getline(cin >> ws, tmp);
+            if (tmp.empty()) tmp = "Unknown";
+            if (tmp.size() > 200) tmp = tmp.substr(0, 200); // PRECOGS_FIX: basic length check
+            name = tmp;
+        }
+        cout << "Enter the UIC of a new product: ";
+        {
+            string tmp;
+            getline(cin >> ws, tmp);
+            if (tmp.empty()) tmp = "Unknown";
+            if (tmp.size() > 64) tmp = tmp.substr(0, 64); // PRECOGS_FIX: basic length check
+            // simple character whitelist (alphanumeric and -,_)
+            string filtered;
+            for (char c : tmp) if (isalnum((unsigned char)c) || c=='-' || c=='_') filtered.push_back(c);
+            UIC = filtered.empty() ? tmp.substr(0, min((size_t)16, tmp.size())) : filtered;
+        }
+    }
 };
 
 // class for Packed Products
@@ -359,7 +377,7 @@ void Purchase(){
 		}break;
 
 		case '0': {
-			main();
+			return; // PRECOGS_FIX: prevent uncontrolled recursion by returning instead of calling main()
 		}
 			break;
 
@@ -372,6 +390,7 @@ void Purchase(){
 }
 
 int main() {
+	using namespace std;
 	PackedGroceries p; // declaration of object PackedGroceries
 	FreshGroceries f; // declaration of object for class FreshGroceries
 
@@ -390,20 +409,66 @@ int main() {
 			ifstream inPacked("Packed", ios::binary);
 			ifstream inFresh("Fresh", ios::binary);
 
-			// displaying the list of packed products
+			// Validate that files opened successfully
+			if (!inPacked.is_open() && !inFresh.is_open()) {
+				cout << "No product files found.\n";
+				system("pause");
+				break;
+			}
+
 			cout << left << setw(20) << "Name" << setw(15) << "UIC" << setw(20) << "Price" << setw(15) << "Quantity" << endl;
-			while (inPacked.read((char*)&p, sizeof(PackedGroceries))) {
-				p.display();
+
+			// Safe read: check file size and bounds before reading records
+			if (inPacked.is_open()) {
+				inPacked.seekg(0, ios::end);
+				streampos packedSize = inPacked.tellg();
+				inPacked.seekg(0, ios::beg);
+
+				if (packedSize <= 0) {
+					// empty file, nothing to display
+				} else if (packedSize % sizeof(PackedGroceries) != 0) {
+					cout << "Packed file corrupted or has unexpected format. Skipping.\n";
+				} else {
+					size_t count = static_cast<size_t>(packedSize / sizeof(PackedGroceries));
+					// PRECOGS_FIX: limit number of records to a sane maximum to avoid resource exhaustion
+					const size_t MAX_RECORDS = 10000;
+					if (count > MAX_RECORDS) count = MAX_RECORDS;
+					for (size_t idx = 0; idx < count; ++idx) {
+						PackedGroceries tmp{}; // ensure zero-initialized
+						inPacked.read(reinterpret_cast<char*>(&tmp), sizeof(PackedGroceries));
+						if (!inPacked) break;
+						// Note: further field-level validation should be performed inside display()/class methods
+						tmp.display();
+					}
+				}
+				inPacked.close();
 			}
 
-			// displaying the list of fresh products
-			while ( inFresh.read((char*)&f, sizeof(FreshGroceries))) {
-				f.display();
+			if (inFresh.is_open()) {
+				inFresh.seekg(0, ios::end);
+				streampos freshSize = inFresh.tellg();
+				inFresh.seekg(0, ios::beg);
+
+				if (freshSize <= 0) {
+					// no records
+				} else if (freshSize % sizeof(FreshGroceries) != 0) {
+					cout << "Fresh file corrupted or has unexpected format. Skipping.\n";
+				} else {
+					size_t count = static_cast<size_t>(freshSize / sizeof(FreshGroceries));
+					// PRECOGS_FIX: limit number of records to a sane maximum to avoid resource exhaustion
+					const size_t MAX_RECORDS = 10000;
+					if (count > MAX_RECORDS) count = MAX_RECORDS;
+					for (size_t idx = 0; idx < count; ++idx) {
+						FreshGroceries tmp{}; // ensure zero-initialized
+						inFresh.read(reinterpret_cast<char*>(&tmp), sizeof(FreshGroceries));
+						if (!inFresh) break;
+						// Note: further field-level validation should be performed inside display()/class methods
+						tmp.display();
+					}
+				}
+				inFresh.close();
 			}
 
-			// closing the files after execution
-			inPacked.close();
-			inFresh.close();	
 			system("pause");
 		}break;
 
@@ -411,19 +476,26 @@ int main() {
 			system("cls");
 			// inputing the info for the new item
 			ofstream outPacked("Packed", ios::binary | ios::app);
+			if (!outPacked.is_open()) {
+				cout << "Failed to open Packed file for writing.\n";
+				break;
+			}
 			p.input();
-			// writing to binary file
-			outPacked.write((char*)&p, sizeof(PackedGroceries));
+			// PRECOGS_FIX: check/validate object fields inside p.input() or before writing; ensure file opened
+			outPacked.write(reinterpret_cast<const char*>(&p), sizeof(PackedGroceries));
 			outPacked.close();
 		}break;
 
 		case '3': {
 			system("cls");
 			ofstream outFresh("Fresh", ios::binary | ios::app);
-			// inputing the info for the new item
+			if (!outFresh.is_open()) {
+				cout << "Failed to open Fresh file for writing.\n";
+				break;
+			}
 			f.input();
-			// writing to binary file the data inputted by user
-			outFresh.write((char*)&f, sizeof(FreshGroceries));
+			// PRECOGS_FIX: check/validate object fields inside f.input() or before writing; ensure file opened
+			outFresh.write(reinterpret_cast<const char*>(&f), sizeof(FreshGroceries));
 			outFresh.close();
 		}break;
 

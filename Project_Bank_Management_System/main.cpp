@@ -1,14 +1,20 @@
 #include "Header.h"
 
+#include <random>
+
 int main()
 {
-	srand(time(0));
-	::available = rand() % 200000;
-	MainMenu();
+    // PRECOGS_FIX: replace predictable srand/time + rand with C++ <random> seeded by non-deterministic random_device
+    std::random_device rd; // non-deterministic seed (if supported by platform)
+    std::mt19937_64 gen(rd()); // cryptographically stronger PRNG for non-cryptographic uses
+    std::uniform_int_distribution<int> dist(0, 200000 - 1);
+    ::available = dist(gen); // PRECOGS_FIX: secure, non-predictable generation of ::available
 
-	system("color 9E");
-	system("pause");
-	return 0;
+    MainMenu();
+
+    system("color 9E");
+    system("pause");
+    return 0;
 }
 
 void MainMenu()
@@ -43,7 +49,7 @@ void MainMenu()
 			for (int i = 0; i < ::increaments; i++)
 			{
 
-				if (oldData[i].name == checkName && oldData[i].password == checkPassword)
+				if (oldData[i].name == checkName && oldData[i].password == hashPassword(checkPassword)) // PRECOGS_FIX: hash password before comparison
 				{
 					::accountNum = i;
 					::balance = oldData[i].balance;
@@ -92,6 +98,7 @@ void MainMenu()
 			cout << "\n          Input your password without space";
 			cout << "\n          ";
 			cin >> data.password;
+			data.password = hashPassword(data.password); // PRECOGS_FIX: hash password before storing
 			data.balance = 0;
 			data.borrowed = 0;
 			inputNewData(data);

@@ -68,30 +68,39 @@ public:
 	}
 };
 
-class Teacher : public Staff, public Education {
-protected:
-	string subject;
-	int publications;
-public:
+void Teacher::getdata() {
+    Staff::getdata_code();
+    Staff::getdata_name();
+    Education::getdata();
 
-	Teacher() {
-		subject = "Unknown";
-		publications = 0;
-	}
-	void getdata() {
-		Staff::getdata_code();
-		Staff::getdata_name();
-		Education::getdata();
-		cout << "Enter subject: " ; cin >> subject;
-		cout << "Enter number of publications: " ; cin >> publications;
-	}
-	void showdata() {
-		Staff::showdata_code();
-		Staff::showdata_name();
-		Education::showdata();
-		cout << "Subject: " << subject << endl << "Publications: " << publications << endl;
-	}
-};
+    // Read subject allowing spaces and validate length
+    std::string line;
+    while (true) {
+        std::cout << "Enter subject: ";
+        if (!std::getline(std::cin, line)) { std::cin.clear(); continue; }
+        if (!line.empty() && line.size() <= 256) { // PRECOGS_FIX: use getline to capture multi-word subject and bound length
+            subject = line;
+            break;
+        }
+        std::cout << "Invalid subject. Try again.\n";
+    }
+
+    // Read number of publications robustly
+    while (true) {
+        std::cout << "Enter number of publications: ";
+        if (!std::getline(std::cin, line)) { std::cin.clear(); continue; }
+        try {
+            long val = std::stol(line);
+            if (val >= 0 && val <= 1000000) {
+                publications = static_cast<int>(val); // PRECOGS_FIX: validated numeric parse and range
+                break;
+            }
+        } catch (const std::exception &) {
+            // continue
+        }
+        std::cout << "Invalid number. Please enter a non-negative integer.\n";
+    }
+}
 
 class Officer : public Staff, public Education {
 protected:
@@ -175,99 +184,111 @@ int main() {
 	return 0;
 }
 void F_First_Program_Menu() {
-	// objects
-	Teacher teacher;
-	Officer officer;
-	Regular_Typist regular;
-	Casual_Typist casual;
+    // objects
+    Teacher teacher;
+    Officer officer;
+    Regular_Typist regular;
+    Casual_Typist casual;
 
-	for (int k = 0; k < 1000; k++) {
-		system("cls");
-		cout << "\tM A I N  M E N U\n";
-		cout << "      =====================\n";
-		cout << " 1. Teacher\n";
-		cout << " 2. Officer\n";
-		cout << " 3. Typist\n";
-		cout << " 0. Back\n";
-		cout << " Your choice: \n";
-		switch (_getch())
-		{
-		case '1': {
-			system("cls");
-			cout << "\t T E A C H E R\n";
-			cout << "===================================\n";
-			teacher.getdata();
-			cout << "\n\n\tThe given information:\n";
-			cout << "===================================\n";
-			teacher.showdata();
-			cout << endl << endl;
-			system("pause");
-		}break;
+    auto clear_screen = []() {
+        // PRECOGS_FIX: avoid system("cls"); simulate clear in a portable manner
+        std::cout << std::string(50, '\n');
+    };
 
-		case '2': {
-			system("cls");
-			cout << "\t O F F I C E R\n";
-			cout << "===================================\n";
-			officer.getdata();
-			cout << "\n\n\tThe given information:\n";
-			cout << "===================================\n";
-			officer.showdata();
-			cout << endl << endl;
-			system("pause");
-		}break;
+    auto pause_console = []() {
+        // PRECOGS_FIX: avoid system("pause"); use a simple Enter-wait
+        std::cout << "Press Enter to continue..." << std::endl;
+        std::string _tmp;
+        std::getline(std::cin, _tmp);
+    };
 
-		case '3': {
-			for (int l = 0; l < 1000; l++) {
-				system("cls");
-				cout << "\t T Y P I S T\n";
-				cout << "===================================\n";
-				cout << " 1. Regular typist\n"; cout << " 2. Casual typist\n"; cout << " 0. Back\n"; cout << " Your choice: \n";
-				switch (_getch())
-				{
-				case '1': {
-					system("cls");
-					cout << "\t R E G U L A R  T Y P I S T\n";
-					cout << "===================================\n";
-					regular.getdata();
-					cout << "\n\n\tThe given information:\n";
-					cout << "===================================\n";
-					regular.showdata();
-					cout << endl << endl;
-					system("pause");
-				}
-						break;
+    for (int k = 0; k < 1000; k++) {
+        clear_screen();
+        std::cout << "\tM A I N  M E N U\n";
+        std::cout << "      =====================\n";
+        std::cout << " 1. Teacher\n";
+        std::cout << " 2. Officer\n";
+        std::cout << " 3. Typist\n";
+        std::cout << " 0. Back\n";
+        std::cout << " Your choice: \n";
+        switch (_getch())
+        {
+        case '1': {
+            clear_screen();
+            std::cout << "\t T E A C H E R\n";
+            std::cout << "===================================\n";
+            teacher.getdata();
+            std::cout << "\n\n\tThe given information:\n";
+            std::cout << "===================================\n";
+            teacher.showdata();
+            std::cout << std::endl << std::endl;
+            pause_console();
+        }break;
 
-				case '2': {
-					system("cls");
-					cout << "\t C A S U A L  T Y P I S T\n";
-					cout << "===================================\n";
-					casual.getdata();
-					cout << "\n\n\tThe given information:\n";
-					cout << "===================================\n";
-					casual.showdata();
-					cout << endl << endl;
-					system("pause");
-				}
-						break;
-				case '0': {
-					system("cls");
-					l = 1000;
-				}break;
-				default: {cout << endl << endl;
-					cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
-					Sleep(0700); Sleep(0700);
-				}break;
-				} // switch
-			} // for
-		}break;
-		case '0': {
-			system("cls");
-			k = 1000;
-		} break;
-		default: { cout << endl << endl;
-			cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
-			Sleep(0700); Sleep(0700);
-		}break;
-		} // switch 
-	} // for loop
+        case '2': {
+            clear_screen();
+            std::cout << "\t O F F I C E R\n";
+            std::cout << "===================================\n";
+            officer.getdata();
+            std::cout << "\n\n\tThe given information:\n";
+            std::cout << "===================================\n";
+            officer.showdata();
+            std::cout << std::endl << std::endl;
+            pause_console();
+        }break;
+
+        case '3': {
+            for (int l = 0; l < 1000; l++) {
+                clear_screen();
+                std::cout << "\t T Y P I S T\n";
+                std::cout << "===================================\n";
+                std::cout << " 1. Regular typist\n"; std::cout << " 2. Casual typist\n"; std::cout << " 0. Back\n"; std::cout << " Your choice: \n";
+                switch (_getch())
+                {
+                case '1': {
+                    clear_screen();
+                    std::cout << "\t R E G U L A R  T Y P I S T\n";
+                    std::cout << "===================================\n";
+                    regular.getdata();
+                    std::cout << "\n\n\tThe given information:\n";
+                    std::cout << "===================================\n";
+                    regular.showdata();
+                    std::cout << std::endl << std::endl;
+                    pause_console();
+                }
+                        break;
+
+                case '2': {
+                    clear_screen();
+                    std::cout << "\t C A S U A L  T Y P I S T\n";
+                    std::cout << "===================================\n";
+                    casual.getdata();
+                    std::cout << "\n\n\tThe given information:\n";
+                    std::cout << "===================================\n";
+                    casual.showdata();
+                    std::cout << std::endl << std::endl;
+                    pause_console();
+                }
+                        break;
+                case '0': {
+                    clear_screen();
+                    l = 1000;
+                }break;
+                default: {std::cout << std::endl << std::endl;
+                    std::cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
+                    Sleep(0700); Sleep(0700);
+                }break;
+                } // switch
+            } // for
+        }break;
+        case '0': {
+            clear_screen();
+            k = 1000;
+        } break;
+        default: { std::cout << std::endl << std::endl;
+            std::cout << "\t\t Your choice is not abailable in Menu. \n\t\t Please try one more time.\n";
+            Sleep(0700); Sleep(0700);
+        }break;
+        } // switch 
+    } // for loop
 }

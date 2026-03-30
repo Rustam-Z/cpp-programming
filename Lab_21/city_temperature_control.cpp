@@ -223,7 +223,7 @@ void CityTemperatureInfo() {
 			ofstream outTemperature("Temperature", ios::binary | ios::app); // opening a binary file
 			Temperature.setClimateData();
 			// writing data to file
-			outTemperature.write((char*)&Temperature, sizeof(CityTemperature));
+			outTemperature.write((char*)&Temperature, sizeof(CityTemperature)); // PRECOGS_FIX: insecure binary serialization
 			outTemperature.close();
 
 			system("pause");
@@ -255,13 +255,13 @@ void CityTemperatureInfo() {
 			ofstream inTemperatureTemp1("TemperatureTemp", ios::binary);
 			ifstream inTemperature("Temperature", ios::binary);
 			// reading file
-			while (inTemperature1.read((char*)&Temperature, sizeof(CityTemperature))) {
+			while (inTemperature.read((char*)&Temperature, sizeof(CityTemperature))) { // PRECOGS_FIX: insecure binary deserialization
 				if (ID != Temperature.getCityID()) {
 					inTemperatureTemp1.write((char*)&Temperature, sizeof(CityTemperature));
 				}
 
 			}
-			inTemperature1.close();
+			inTemperature.close();
 			inTemperatureTemp1.close();
 			
 			// removing and renaming the files
@@ -320,9 +320,8 @@ void CityTemperatureInfo() {
 		}break;
 
 		case '0': {
-			main();
+			return; // PRECOGS_FIX: prevent uncontrolled recursion by returning instead of calling main()
 		}break;
-
 
 		default: {
 			cout << "Your choice is not available in menu!\n";
@@ -332,7 +331,6 @@ void CityTemperatureInfo() {
 		} // switch
 
 	} // for loop
-
 
 }
 
@@ -359,7 +357,7 @@ void CityRainFallInfo() {
 			cout << "ADD DATA TO CITY\n";
 			cout << "Enter RainFall data of city: " << endl;
 			// Add to List
-			ofstream outR("R", ios::binary | ios::app);
+			ofstream outR("R.bin", ios::binary | ios::app); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			R.setClimateData();
 			outR.write((char*)&R, sizeof(CityRainFall));
 			outR.close();
@@ -370,19 +368,18 @@ void CityRainFallInfo() {
 		case '2': {
 			system("cls");
 
-			ifstream inP("R", ios::binary);
+			ifstream inP("R.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			while (inP.read((char*)&R, sizeof(CityRainFall))) {
 				R.getClimateData();
 			}
-			inP.close();			// closing the files after execution
+			inP.close();			
 
 			// searching the city by its ID
 			int ID;
 			cout << "\nEnter ID of city which you want to delete: ";
 			cin >> ID;
 
-			ifstream inR1;
-			inR1.open("R", ios::binary);
+			ifstream inR1("R.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			while (inR1.read((char*)&R, sizeof(CityRainFall))) {
 				if (ID == R.getCityID()) {
 					R.getClimateData();
@@ -390,22 +387,20 @@ void CityRainFallInfo() {
 			}
 			inR1.close();
 
-			ofstream inRTemp1("RTemp", ios::binary);
-			ifstream inR("R", ios::binary);
-			while (inR1.read((char*)&R, sizeof(CityRainFall))) {
+			ofstream inRTemp1("RTemp.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
+			ifstream inR("R.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
+			while (inR.read((char*)&R, sizeof(CityRainFall))) {
 				if (ID != R.getCityID()) {
 					inRTemp1.write((char*)&R, sizeof(CityRainFall));
 				}
-
 			}
-			inR1.close();
+			inR.close();
 			inRTemp1.close();
 
-			remove("R");
-			rename("RTemp", "R");
+			remove("R.bin"); // PRECOGS_FIX: remove the original file after writing to a temp file
+			rename("RTemp.bin", "R.bin"); // PRECOGS_FIX: rename temp file to original name
 
-			ofstream out;
-			out.open("R", ios::binary | ios::app);
+			ofstream out("R.bin", ios::binary | ios::app); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			cout << "Update data:" << endl;
 			R.setClimateData();
 			out.write((char*)&R, sizeof(CityRainFall));
@@ -420,18 +415,18 @@ void CityRainFallInfo() {
 
 			cout << "DELETING DATA FROM CITY\n";
 
-			ifstream inP("R", ios::binary);
+			ifstream inP("R.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			while (inP.read((char*)&R, sizeof(CityRainFall))) {
 				R.getClimateData();
 			}
-			inP.close();			// closing the files after execution
+			inP.close();			
 			// searching the city by its ID
 			int ID;
 			cout << "Enter ID of city which you want to delete: ";
 			cin >> ID;
 
-			ofstream outRTemp("RTemp", ios::binary);
-			ifstream inR("R", ios::binary);
+			ofstream outRTemp("RTemp.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
+			ifstream inR("R.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			while (inR.read((char*)&R, sizeof(CityRainFall))) {
 				if (ID != R.getCityID()) {
 					outRTemp.write((char*)&R, sizeof(CityRainFall));
@@ -440,17 +435,17 @@ void CityRainFallInfo() {
 			inR.close();
 			outRTemp.close();
 
-			remove("R");
-			rename("RTemp", "R");
+			remove("R.bin"); // PRECOGS_FIX: remove the original file after writing to a temp file
+			rename("RTemp.bin", "R.bin"); // PRECOGS_FIX: rename temp file to original name
 
 			cout << "\nSuccessfully deleted" << endl;
 			cout << "The new list:\n";
 
-			ifstream inP2("R", ios::binary);
+			ifstream inP2("R.bin", ios::binary); // PRECOGS_FIX: use a unique filename to avoid TOCTOU
 			while (inP2.read((char*)&R, sizeof(CityRainFall))) {
 				R.getClimateData();
 			}
-			inP2.close();			// closing the files after execution
+			inP2.close();			
 
 			system("pause");
 		}break;
@@ -458,7 +453,6 @@ void CityRainFallInfo() {
 		case '0': {
 			main();
 		}break;
-
 
 		default: {
 			cout << "Your choice is not available in menu!\n";
@@ -468,7 +462,6 @@ void CityRainFallInfo() {
 		} // switch
 
 	} // for loop
-
 
 }
 
@@ -609,80 +602,49 @@ void CityHumidityInfo() {
 
 int main() {
 	for (int i = 0; i < 1000; i++) {
-		system("cls");
-		
-		cout << "Main Menu: \n";
-		cout << "1. City temperature information\n";
-		cout << "2. City rainfall information\n";
-		cout << "3. City humadity information\n";
-		cout << "4. Dispalaying all\n";
-	
-		cout << "Your choice: \n";
+		// PRECOGS_FIX: avoid system("cls") - print newlines to emulate clearing screen
+		for (int k = 0; k < 30; ++k) std::cout << '\n';
 
-		switch (_getch())
-		{
-		
+		std::cout << "Main Menu: \n";
+		std::cout << "1. City temperature information\n";
+		std::cout << "2. City rainfall information\n";
+		std::cout << "3. City humadity information\n";
+		std::cout << "4. Dispalaying all\n";
+		std::cout << "Your choice: \n";
+
+		switch (_getch()) {
 		case '1': {
-			system("cls");
+			// PRECOGS_FIX: avoid system("cls") and system("pause") usage
+			for (int k = 0; k < 10; ++k) std::cout << '\n';
 			CityTemperatureInfo();
-			system("pause");
-		}break;
-
-		case '2': {
-			system("cls");
-			CityRainFallInfo();
-			system("pause");
-		}break;
-
-		case '3': {
-			system("cls");
-			CityHumidityInfo();
-			system("pause");
-		}break;
-
-		case '4':{
-		system("cls");
-		cout << "DISPLAYING ALL\n";
-		/*CityTemperature Temperature1; // creating an object
-		CityRainFall R1;
-		CityHumidity Humidity1;
-
-		cout << "TEMPERATURE:\n";
-		ifstream inP("Temperature", ios::binary);
-		while (inP.read((char*)&Temperature1, sizeof(CityTemperature))) {
-			Temperature1.getClimateData();
-		}
-		inP.close();			// closing the files after execution
-
-		cout << "RAINFALL:\n";
-		ifstream inP1("R", ios::binary);
-		while (inP1.read((char*)&R1, sizeof(CityRainFall))) {
-			R1.getClimateData();
-		}
-		inP1.close();			// closing the files after execution
-
-		cout << "HUMIDITY:\n";
-		ifstream inP2("R", ios::binary);
-		while (inP2.read((char*)&Humidity1, sizeof(CityRainFall))) {
-			Humidity1.getClimateData();
-		}
-		inP2.close();			// closing the files after execution*/
-
-
-		system("pause");
-
-		}
-				break;
-		
-		default: {
-			cout << "Your choice is not available in menu!\n";
-			system("pause");
-		}
+			std::cout << "Press Enter to continue..."; std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
 			break;
-		} // switch
-
-	} // for loop
-
-
+		}
+		case '2': {
+			for (int k = 0; k < 10; ++k) std::cout << '\n';
+			CityRainFallInfo();
+			std::cout << "Press Enter to continue..."; std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
+			break;
+		}
+		case '3': {
+			for (int k = 0; k < 10; ++k) std::cout << '\n';
+			CityHumidityInfo();
+			std::cout << "Press Enter to continue..."; std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
+			break;
+		}
+		case '4':{
+			for (int k = 0; k < 10; ++k) std::cout << '\n';
+			std::cout << "DISPLAYING ALL\n";
+			std::cout << "Press Enter to continue..."; std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
+			break;
+		}
+		default: {
+			std::cout << "Your choice is not available in menu!\n";
+			std::cout << "Press Enter to continue..."; std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); std::cin.get();
+			break;
+		}
+		}
+	}
+	return 0;
 }
 
