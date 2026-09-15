@@ -1,6 +1,7 @@
 // C++ program to Calculate Area and Circumference of Circle.
 
 #include <iostream>
+#define PI 3.14
 
 using namespace std;
 
@@ -12,8 +13,8 @@ int main()
 	cin >> R;
 
 	if (R > 0) {
-		Area = 3.14 * R * R;
-		Circumference = 2 * 3.14 * R;
+		Area = PI * R * R;
+		Circumference = 2 * PI * R;
 		cout << "Area of Circle is " << Area << ";" << endl;
 		cout << "Circumference of Circle is " << Circumference << ";" << endl;
 	}
